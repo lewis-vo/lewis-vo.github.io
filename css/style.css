@@ -229,6 +229,17 @@ body.q10 .logo {
   box-shadow: 0 -1px var(--primary);
 
   color: var(--primary);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bottom-banner::after {
+  position: absolute;
+  content: '';
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left:0;
+  top:0;
+  background-color: var(--background);
 }
 .banner-unit {
   position: relative;
@@ -321,7 +332,7 @@ h4.title {
 .progression-bar::after,
 .progression-bar > .fill {
   position: absolute;
-  content: ' ';
+  content: '';
   width: 100%;
   height: inherit;
   background-color: var(--primary);
