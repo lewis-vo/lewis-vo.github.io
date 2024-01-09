@@ -45,7 +45,9 @@
   <!-- SCREEN: Start -->
   <section class="start-screen"
     x-show="start == false"
-    x-transition>
+    x-transition:leave="screen-out-transition"
+    x-transition:leave-start="screen-out-start"
+    x-transition:leave-end="screen-out-end">
     <h1 class="super-title">
       What is <br>YOUR <span class="special-font">ELEMENT</span>?
     </h1>
@@ -117,7 +119,7 @@
   </section>
 
   <!-- SCREEN: Calculating -->
-  <section class="calculating-screen" x-show="currentQuestionIndex == questions.length" x-transition="">
+  <section class="calculating-screen" x-show="currentQuestionIndex == questions.length" x-transition>
     <h1>DETERMINING YOUR ELEMENT...</h1>
   </section>
 
