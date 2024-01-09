@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Adidas Personal Element Test</title>
+
+  <!-- SEO -->
+  <meta name="description" content="See what your personal element is and the ultimate pair of shoes for you.">
+  <meta property="og:title" content="Adidas Personal Element Test">
+  <meta property="og:description" content="See what your personal element is and the ultimate pair of shoes for you.">
+  <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+  <meta property="og:image:alt" content="Adidas Personal Element Test">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://www.mywebsite.com/page">
+  <link rel="canonical" href="https://www.mywebsite.com/page">
+
+  <!-- Mobile icons -->
+  <link rel="icon" href="./assets/favicon.ico">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="manifest" href="./assets/app.manifest">
+  <meta name="theme-color" content="#000">
+
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body x-data="
+      {
+        questions: $store.questions,
+        currentQuestionIndex: -1,
+        keys: [$store.questions[0].choices[0].key],
+        selectedIndex: 0,
+        start: false,
+      }"
+      :class="'q' + (currentQuestionIndex+1)">
+  <!-- Persistent -->
+  <header class="top-bar">
+    <img class="logo" src="./assets/images/logo.svg">
+    <img class="logo mark" src="./assets/images/campaign_headline.svg">
+  </header>
+
+  <!-- SCREEN: Start -->
+  <section class="start-screen"
+    x-show="start == false"
+    x-transition>
+    <h1 class="super-title">
+      What is <br>YOUR <span class="special-font">ELEMENT</span>?
+    </h1>
+
+    <div class="fluid-container">
+      <img class="foot" src="./assets/images/foot.png">
+      <svg class="fluid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 881.51 1000">
+        <path class="cls-1" d="M489.28,67.14c21.12-32.28,72.96-48.63,118.89-48.74,45.93-.11,87.94,20.62,106.25,62.74,14.88,34.24,8.14,89.1-7.45,123.02-15.58,33.92-37.27,70.89-61.63,99.18-19.03,22.1-44.58,45.68-60.09,58.13-15.25,12.24-38.93,29.4-57.67,34.99-18.74,5.59-38.43,1.79-41.36-17.55-1.7-11.24,11.59-27.33,9.92-38.58-2.06-13.87-15.32-23.91-29.06-26.74-13.73-2.83-39.83-6.45-53.56-3.62-52.38,10.82-95.06,29.11-136.63,62.77-41.57,33.66-64.9,96.36-37.34,142.2,16.77,27.9,48.99,43.97,81.34,47.66s64.98-3.56,95.97-13.54c155.71-50.16,285.71-174.45,342.82-327.75,11.54-30.98,20.32-63.6,19.37-96.65-.96-33.05-12.59-66.79-36.78-89.34-22.59-21.05-53.81-30.53-84.52-33.73-107.79-11.25-201.95,37.24-243.96,137.14-8.17,19.42-31.9,58.37-48.26,71.64-22.2,18-56.35,20.77-84.42,26.16-50.27,9.66-106.63,52.11-140.75,90.27-36.58,40.91-55.69,73.27-77.06,123.82-21.36,50.55-39.18,140.34-16.17,190.16,17.36,37.58,46.11,68.07,85.4,81.11,39.29,13.04,72.69,6.47,110.52-10.34,34.9-15.51,46.55-33.41,53.27-45.35,6.71-11.94,14.41-39.76,6.34-50.82-15.19-20.81-47.18-12.68-72.73-16.04-34.97-4.6-64.43-19.63-79.94-59.7-12.73-32.89-7.55-100.24,5.17-133.14,33.11-85.64,63.57-138.97,133.72-149.09,59.78-8.63,96.53-4.17,125.38-26.2,28.85-22.03,27.21-41.32,38.51-89.82,4.89-20.98,15.4-41.96,36.52-74.24Z"/>
+        <path class="cls-1" d="M285.36,797.43c-30.8,21.77-68.86,83.86-126.17,67.95-32.79-9.1-38.69-36.68-59.05-60.69-19.66-23.18-73.26-14.91-88.95,15.16-29.85,57.22,4.53,126.07,49.34,160.87,44.81,34.8,138.98,22.23,191.86-35.61,29.83-32.64,52.71-118.63,92.71-135.26,32.6-13.55,60.47-5.49,95.63-5.3,78.45.43,115.56-54.9,124.3-70.29,7.68-13.51,13.64-38.21,6.82-65.99-3.74-15.23-16.76-27.22-31.51-26.1-12.12.92-23.74,9.25-29.51,20.71-5.77,11.46-5.5,24.13-10.05,36.19-13.14,34.84-37.68,72.72-97.1,80.61-59.42,7.89-77.87-10.86-118.33,17.74Z"/>
+        <path class="cls-1" d="M452.37,703.32c59.21-22-34.02-50.91,11.3-104.81,33.38-39.7,64.31,3.97,87.47.71,31.32-4.41,1.52-43.55,69.39-39.35,45.68,2.83,33.19,39.58,18.97,62.32-11.88,19.01,14.74,39.97,49.55,38.39,23.6-1.07,35.49-33.46,96-31.31,60.51,2.14,62.64,23.4,84.31,10.73,16.65-9.74,15.92-27.75-.42-58.84s-43.08-65.22-123.91-54.08c-44.33,6.11-85.5-45.92-39.24-82.69,40.52-32.21,94.59,8.57,109.42-2.22,10.19-7.41,13.24-16.39,3.65-25.65-9.59-9.26-36.22-8.7-44.22-7.62-35.9,4.88-73.59,15.97-109.21,41.89-29.29,21.32-76.54,91.24-106.13,112.15-38.73,27.38-40.37-1.19-87.8-.73-50.14.49-85.03,18.28-110.43,80.2-27.88,67.99,24.59,85.69,91.31,60.91Z"/>
+      </svg>
+    </div>
+    <button class="button"
+      @click="start=true; currentQuestionIndex++">
+      Get Started
+    </button>
+
+    <footer class="bottom-banner">
+      <template x-data x-for="el in Array(9)">
+        <div class="banner-unit">
+          <div class="banner-item">Adidas</div>
+          <div class="banner-item">Personal Element Test</div>
+          <div class="banner-item">What is your Element?</div>
+        </div>
+      </template>
+    </footer>
+  </section>
+
+  <!-- SCREEN: Game -->
+  <section class="game-screen"
+    x-show="currentQuestionIndex !== questions.length && start == true"
+    x-data="{ currentQuestion: () => { return questions[currentQuestionIndex] || $store.createQuestions(0, '', '', '', '', ''); } }">
+    <div style="height:100%"></div>
+    <canvas id="canvas"></canvas>
+
+    <article class="question-box">
+      <h2 class="index" x-text="currentQuestionIndex+1"
+          ></h2>
+      <h4 class="title"
+          x-text="currentQuestion().title">Title</h4>
+      <div class="progression-bar">
+        <div class="fill" :style="`width: ${ currentQuestionIndex / (questions.length-1) * 100 }%`"></div>
+      </div>
+    </article>
+
+    <ul>
+      <template x-for="(choice, index) in currentQuestion().choices" :key="index">
+        <li 
+            @click="() => { keys[currentQuestionIndex] = choice.key; selectedIndex = index }"
+            :class="(selectedIndex == index) ? 'selected': ''">
+            <a href="#" x-text="choice.label"></a>
+        </li>
+      </template>
+    </ul>
+    <button class="button"
+      @click="
+      if (currentQuestionIndex < questions.length-1) {
+        currentQuestionIndex++;
+        window.currentQuestionIndex++;
+        keys[currentQuestionIndex] = currentQuestion().choices[0].key;
+        selectedIndex = 0;
+      } else {
+        $store.calculateResults(keys.join(''));
+        currentQuestionIndex++;
+        window.currentQuestionIndex++;
+      }">
+      Next
+    </button>
+  </section>
+
+  <!-- SCREEN: Calculating -->
+  <section class="calculating-screen" x-show="currentQuestionIndex == questions.length" x-transition="">
+    <h1>DETERMINING YOUR ELEMENT...</h1>
+  </section>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+  <script src="https://fariskassim.com/stage/rebel9/teaf/blob/v4/js/perlin.js"></script>
+  <script src="./js/index.js"></script>
+</body>
