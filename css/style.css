@@ -167,7 +167,7 @@ body.q10 .logo {
 .logo {
   height: 1.6rem;
   transition: 0.7s;
-  margin-right: 1.2rem;
+  margin-right: 1.5rem;
   user-select: none;
 }
 .logo.mark {
@@ -302,6 +302,7 @@ body.q10 .logo {
   font-weight: 600;
   line-height: normal;
   letter-spacing: 1px;
+  transition: .7s;
 }
 .banner-item::after {
   position: absolute;
@@ -317,7 +318,7 @@ body.q10 .logo {
 /*** SCREEN: Game ***/
 canvas {
   position: fixed;
-  top: -90px;
+  top: -85px;
   left: 0;
   height: 70vh;
 }
