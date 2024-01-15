@@ -11,9 +11,13 @@
       if (answers[i] == "E") counter.E++;
       if (answers[i] == "S") counter.S++;
       if (answers[i] == "T") counter.T++;
+      if (answers[i] == "J") counter.J++;
     }
-    let personality = `${(counter.E >=2) ? "E" : "I"}${(counter.S >=2) ? "S" : "N"}${(counter.T >=2) ? "T" : "F"}`;
-    console.log(personality);
+    let personality = `${(counter.E >=2) ? "E" : "I"}${(counter.S >=2) ? "S" : "N"}${(counter.T >=2) ? "T" : "F"}${(counter.J >=2) ? "J" : "P"}`;
+    
+    setTimeout(() => {
+      window.location.href = `./assets/images/results/2x/${personality}.png`;
+    }, 2700);
     return personality;
   };
   const mapRange = (number, inMin, inMax, outMin, outMax) => (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -63,10 +67,10 @@
     scene.add(sphere);
     const update = () => {
       // change '0.003' for more aggressive animation
-      let time = performance.now() * (0.001*mapRange(currentQuestionIndex, 0, 8, 1, 3));
+      let time = performance.now() * (0.001*mapRange(currentQuestionIndex, 0, 11, 1, 3));
 
       // change 'k' value for more spikes
-      let k = mapRange(2+currentQuestionIndex, 2, 10, 2, 5);
+      let k = mapRange(2+currentQuestionIndex, 2, 13, 2, 5);
       let height = 0.4;
       let position = sphere.geometry.attributes.position;
       let p = new THREE.Vector3();
@@ -95,8 +99,10 @@
   const counter = {
     E: 0,
     S: 0,
-    T: 0
+    T: 0,
+    J: 0,
   };
+  /*
   const questions = [
     createQuestions(
       1, "You find yourself in an urban park filled with eccentric and interactive installations. Nearby, there's a gathering of people participating in a game. You would be...",
@@ -142,6 +148,69 @@
       9, "You have reached the end of the wild installation with all sorts of thoughts. You are more likely to...",
       "evaluate the installation based on its innovation and originality, appreciating the artistic expression.", "T",
       "resonate more with the emotional resonance it elicits, finding beauty and meaning in its spiritual form.", "F",
+    ),
+  ];
+  */
+  const questions = [
+    createQuestions(
+      1, "When exploring a vibrant street market, you would...",
+      "feel energized by the lively interactions with vendors and fellow shoppers.", "E",
+      "quietly observe the vibrant array of sights and sounds.", "I",
+    ),
+    createQuestions(
+      2, "In an urban art gallery, you came across an interesting artwork, you would...",
+      "focus on the sense of imagination it gives you.", "N",
+      "appreciate its precise details and realistic representations.", "S",
+    ),
+    createQuestions(
+      3, "An upcoming bustling urban market, known for its unique vendors, is here in your town, you would...",
+      "prepare to have a clear idea of what you want to buy and where to find it.", "J",
+      "open to exploring and discovering new items along the way.", "P",
+    ),
+    createQuestions(
+      4, "There's a new café popular among the youth. When you go there, you would notice...",
+      "the buzz of conversations and social interactions.", "E",
+      "a quiet corner to enjoy your own company.", "I",
+    ),
+    createQuestions(
+      5, "At your workplace, you face with a challenging problem. You are more likely to...",
+      "consider the emotional impact and seek harmony among team members.", "F",
+      "prioritize logical analysis and objective decision-making.", "T",
+    ),
+    createQuestions(
+      6, "You come across a vibrant art street with colorful murals. You would...",
+      "find yourself lost in thought, contemplating the deeper meanings and messages they convey.", "N",
+      "focus on the vivid visual elements and the details within.", "S",
+    ),
+    createQuestions(
+      7, "When attending a lively music festival in the heart of the city, you prefer...",
+      "finding a cozy spot to sit back and enjoy the music.", "I",
+      "dancing and mingling with the crowd.", "E",
+    ),
+    createQuestions(
+      8, "At an urban technology conference, you are drawn to..",
+      "the practical applications and functionalities of the showcased innovations.", "S",
+      "the futuristic possibilities and the big-picture impact.", "N",
+    ),
+    createQuestions(
+      9, "Your friends just asked you to come to their spontaneous outing. You would...",
+      "enjoy the flexibility and excitement of going with the flow.", "P",
+      "ask if they could come up with a clear plan.", "J",
+    ),
+    createQuestions(
+      10, "When exploring a dynamic installation with multiple activities happening simultaneously, you would...",
+      "stick to your own schedule and making sure you experience everything you want.", "J",
+      "embrace the unexpected and letting the installation guide your choices.", "P",
+    ),
+    createQuestions(
+      11, "You go to this rooftop bar for the first time, you would...",
+      "engage in lively conversations and meeting new people.", "E",
+      "savor you drink by yourself and enjoy the surrounding atmosphere.", "I",
+    ),
+    createQuestions(
+      12, "Coming across a college town with shops intertwining with universities, you would...",
+      "appreciate the efficiency and organization that goes into its planning.", "T",
+      "connect with the positive vibes and the sense of togetherness it fosters.", "F",
     ),
   ];
   buildBlob();
