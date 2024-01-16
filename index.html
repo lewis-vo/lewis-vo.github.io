@@ -51,8 +51,9 @@
           'ENTP',
           'INTJ',
         ],
+        dichesOrder: ['4P', '4J', '3F', '3T', '2N', '2S', '1I', '1E', '4J', '3T', '2S', '1E'],
         currentTypeIndex: 0,
-        typeCycleDuration: 600
+        typeCycleDuration: 440
       }"
       :class="'q' + (currentQuestionIndex+1)"
       x-init="setInterval(() => {
@@ -92,7 +93,7 @@
     </button>
 
     <footer class="bottom-banner">
-      <template x-data x-for="el in Array(9)">
+      <template x-data x-for="el in 9">
         <div class="banner-unit">
           <div class="banner-item">Adidas</div>
           <div class="banner-item">Personal Archetype Test</div>
@@ -108,6 +109,26 @@
     x-data="{ currentQuestion: () => { return questions[currentQuestionIndex] || $store.createQuestions(0, '', '', '', '', ''); } }">
     <div style="height:100%"></div>
     <canvas id="canvas"></canvas>
+
+
+    <template x-for="(diches, index) in dichesOrder" :key="index">
+      <div class="flower-box-container"
+          x-transition:enter="flower-box-in"
+          x-transition:enter-start="flower-box-in-start"
+          x-transition:enter-end="flower-box-in-end"
+          x-show="currentQuestionIndex===index">
+        <div class="flower-box">
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+          <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
+        </div>
+      </div>
+    </template>
     
     <article class="question-box">
       <h2 class="index" x-text="currentQuestionIndex+1"
