@@ -213,7 +213,7 @@ body.q13 .logo {
 }
 
 .fluid-container {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,6 +345,11 @@ body.q13 .logo {
 }
 
 /*** SCREEN: Game ***/
+.game-screen .fluid-container {
+  filter: blur(100px) saturate(2);
+  opacity: 0.33;
+}
+
 canvas {
   position: fixed;
   top: -85px;
@@ -467,6 +472,7 @@ h4.title {
   transition: 4s;
   --distance: 2vw;
   --width: 24vh;
+  filter: saturate(1.4);
 }
 .flower-box > img:nth-child(1) {
   transform: translateY(calc(var(--distance)*-1 - var(--width)/2)) rotate(calc(360deg/8 * 1));
