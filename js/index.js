@@ -95,7 +95,226 @@
     }
 
     requestAnimationFrame(animate);  
+  };
+
+  const buildFloaties = () => {
+    // Create the Three.js scene
+    const scene = new THREE.Scene();
+
+    const light = new THREE.DirectionalLight( 0xffffff, 1 );
+    light.position.set( 0.5, 1, 1 ).normalize();
+    scene.add(light);
+    scene.add(new THREE.AmbientLight(0xcccccc))
+
+    // Create the camera
+    const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // Create the renderer
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('start-canvas'), antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    window.addEventListener('resize', function () {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    // Load the OBJ file
+    const loader = new THREE.OBJLoader();
+    const material = (color) => {
+      let mat = new THREE.MeshPhysicalMaterial({
+        color: color,
+        roughness: 0.4,
+        metalness: .01,
+
+        specularIntensity: 1,
+        specularColor: color,
+
+        sheen: 1,
+        sheenRoughness: 0,
+        sheenColor: color,
+
+        transmission: 0.4,
+        thickness: 50,
+      });
+      return mat;
+    };
+    let _object, o2, o3, o4, o5, o6, o7, o8;
+    loader.load(
+      '../assets/charms/Asset 1.obj',
+      function (object) {
+        // Apply the material to the object
+        object.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.material = material(new THREE.Color(0x20ad4b));
+          }
+        });
+
+        // Scale the loaded object
+
+        // Add the loaded object to the scene
+        scene.add(object);
+
+        // Calculate the bounding box of the object
+        const boundingBox = new THREE.Box3().setFromObject(object);
+        const objectSize = boundingBox.getSize(new THREE.Vector3()).length();
+
+        // Adjust the camera position and zoom to fit the object
+        const center = boundingBox.getCenter(new THREE.Vector3());
+        camera.position.copy(center);
+        camera.position.x += objectSize / 2;
+        camera.position.y += objectSize / 4;
+        camera.position.z += objectSize;
+        camera.lookAt(center);
+        
+        object.scale.set(0.4, 0.4, 0.4); // Adjust the scaling as needed
+        object.position.set(-2, 0, -10);
+
+        _object = object;
+      }
+    );
+
+    loader.load(
+      '../assets/charms/Asset 2.obj',
+      function (object) {
+        // Apply the material to the object
+        object.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.material = material(new THREE.Color(0xe91c32));
+          }
+        });
+
+        // Scale the loaded object
+
+        // Add the loaded object to the scene
+        scene.add(object);
+        
+        object.scale.set(0.4, 0.4, 0.4); // Adjust the scaling as needed
+        object.position.set(-4, 10, -7);
+
+        o2 = object;
+      }
+    );
+
+    loader.load(
+      '../assets/charms/Asset 3.obj',
+      function (object) {
+        // Apply the material to the object
+        object.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.material = material(new THREE.Color(0xec008c));
+          }
+        });
+
+        // Scale the loaded object
+
+        // Add the loaded object to the scene
+        scene.add(object);
+        
+        object.scale.set(0.4, 0.4, 0.4); // Adjust the scaling as needed
+        object.position.set(1, -10, -2);
+
+        o3 = object;
+      }
+    );
+
+    loader.load(
+      '../assets/charms/Asset 4.obj',
+      function (object) {
+        // Apply the material to the object
+        object.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.material = material(new THREE.Color(0xcccccc));
+          }
+        });
+
+        // Scale the loaded object
+
+        // Add the loaded object to the scene
+        scene.add(object);
+        
+        object.scale.set(0.4, 0.4, 0.4); // Adjust the scaling as needed
+        object.position.set(-2, 0, -4);
+
+        o4 = object;
+      }
+    );
+
+    loader.load(
+      '../assets/charms/Asset 5.obj',
+      function (object) {
+        // Apply the material to the object
+        object.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.material = material(new THREE.Color(0x3b449b));
+          }
+        });
+
+        // Scale the loaded object
+
+        // Add the loaded object to the scene
+        scene.add(object);
+        
+        object.scale.set(0.4, 0.4, 0.4); // Adjust the scaling as needed
+        object.position.set(-5, 5, -40);
+
+        o5 = object;
+      }
+    );
+
+    loader.load(
+      '../assets/charms/Asset 6.obj',
+      function (object) {
+        // Apply the material to the object
+        object.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.material = material(new THREE.Color(0x33c1d5));
+          }
+        });
+
+        // Scale the loaded object
+
+        // Add the loaded object to the scene
+        scene.add(object);
+        
+        object.scale.set(0.4, 0.4, 0.4); // Adjust the scaling as needed
+        object.position.set(-10, -3, -7);
+
+        o6 = object;
+      }
+    );
+
+  // Define the bobbing animation properties
+    const bobHeight = 0.8; // Adjust the bobbing height
+    const bobSpeed = 0.01; // Adjust the bobbing speed
+    const rotateY = 0.005;
+    const rotateX = 0.0002/2;
+    let time = 0;
+
+    const setAnim = (obj, time, height, offset) => {
+      const yOffset = Math.sin(time) * bobHeight;
+      if (obj !== undefined) {
+        //obj.rotation.y += rotateY;
+        //obj.rotation.x += rotateX;
+        obj.position.y = yOffset + (offset || 0);
+      }
+    }
+
+    function render() {
+      requestAnimationFrame(render);
+      setAnim(_object, time, bobHeight);
+      setAnim(o2, time*1, bobHeight, 4);
+      setAnim(o3, time*0.8, bobHeight, -5);
+      setAnim(o4, time*2, bobHeight, -1);
+      setAnim(o5, time*1.6, bobHeight+6, -14);
+      setAnim(o6, time*0.5, bobHeight, -5);
+
+      time += bobSpeed;
+      renderer.render(scene, camera);
+    }
+
+    render();
   }
+
   const counter = {
     E: 0,
     S: 0,
@@ -213,7 +432,6 @@
       "connect with the positive vibes and the sense of togetherness it fosters.", "F",
     ),
   ];
-  buildBlob();
 
   window.currentQuestionIndex = 0;
 
