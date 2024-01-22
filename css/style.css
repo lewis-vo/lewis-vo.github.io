@@ -64,7 +64,7 @@ body {
 
   --special-color: #ec008c;
 
-  --q1-primary: #cccccc;
+  --q1-primary: #fff;
   --q2-primary: #e91c32;
   --q3-primary: #ec008c;
   --q4-primary: #3b449b;
@@ -78,49 +78,19 @@ body {
   --q12-primary: #000;
   background-color: var(--background);
 }
-body.q1 {
-  --background: var(--q1-primary);
-}
-body.q2 {
-  --background: var(--q2-primary);
-}
-body.q3 {
-  --background: var(--q3-primary);
-}
-body.q4 {
-  --background: var(--q4-primary);
-}
-body.q5 {
-  --background: var(--q5-primary);
-}
-body.q6 {
-  --background: var(--q6-primary);
-}
-body.q7 {
-  --background: var(--q7-primary);
-}
-body.q8 {
-  --background: var(--q8-primary);
-}
+body.q7,
+body.q8,
 body.q9,
 body.q10,
 body.q11,
 body.q12,
 body.q13 {
-  --background: var(--q9-primary);
+  --background: var(--q12-primary);
   --primary: #fff;
   --ternary: rgba(255,255,255, .24);
 }
-body.q10 {
-  --background: var(--q10-primary);
-}
-body.q11 {
-  --background: var(--q11-primary);
-}
-body.q12,
-body.q13 {
-  --background: var(--q12-primary);
-}
+body.q7 .logo,
+body.q8 .logo,
 body.q9 .logo,
 body.q10 .logo,
 body.q11 .logo,
@@ -155,6 +125,7 @@ body.q13 .logo {
   right: 0;
   bottom: 0;
   background-color: var(--q1-primary);
+  z-index: 10000;
 
   transition: 400ms;
   transition-property: transform;
@@ -467,8 +438,8 @@ body.q13 .logo {
   align-items: center;
   justify-content: center;
   width: inherit;
-  height: 80dvh;
-  top: 0;
+  height: 100dvh;
+  top: -10vh;
 }
 .charms-container::after {
   position: absolute;
@@ -532,6 +503,21 @@ canvas {
   top: 0;
   left: 0;
   height: 70vh;
+}
+
+img.MBTICycle {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 140vw;
+  align-self: center;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation:portrait) {
+  img.MBTICycle {
+    width: 140vh;
+  }
 }
 
 .question-box {

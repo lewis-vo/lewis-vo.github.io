@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ADIDAS PERSONAL ARCHETYPE TEST</title>
+  <title>Adidas Core Archetype Test</title>
 
   <!-- SEO -->
   <meta name="description" content="See what your personal archetype is and the ultimate pair of shoes for you.">
-  <meta property="og:title" content="ADIDAS PERSONAL ARCHETYPE TEST">
+  <meta property="og:title" content="Adidas Core Archetype Test">
   <meta property="og:description" content="See what your personal archetype is and the ultimate pair of shoes for you.">
   <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
-  <meta property="og:image:alt" content="ADIDAS PERSONAL ARCHETYPE TEST">
+  <meta property="og:image:alt" content="Adidas Core Archetype Test">
   <meta property="og:locale" content="en_GB">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -51,6 +51,8 @@
           'ENTP',
           'INTJ',
         ],
+        currentMBTIIndex: 0,
+        MBTICycleDuration: 1500,
         dichesOrder: ['4P', '4J', '3F', '3T', '2N', '2S', '1I', '1E', '4J', '3T', '2S', '1E'],
         currentTypeIndex: 0,
         typeCycleDuration: 2000,
@@ -63,7 +65,11 @@
       x-init="setInterval(() => {
         currentTypeIndex++;
         if (currentTypeIndex >= 5) currentTypeIndex = 0;
-      }, typeCycleDuration)">
+      }, typeCycleDuration);
+      setInterval(() => {
+        currentMBTIIndex++;
+        if (currentMBTIIndex >=16) currentMBTIIndex = 0;
+      }, MBTICycleDuration)">
   <!-- Persistent -->
   <header class="top-bar">
     <img class="logo" src="./assets/images/logo.svg">
@@ -78,16 +84,16 @@
     
     <div class="sliding-backdrop" x-show="">
       <template x-data x-for="(d, index) in [
-        ['Today', 9000+1500],
-        ['Tomorrow', 11000+1500],
-        ['Next Monday', 12000+1500],
-        ['Tonight', 9000+1500],
-        ['Last Week', 10000+1500],
-        ['This Sunday', 8000+1500],
-        ['Next Thursday', 12000+1500],
-        ['This Weekend', 13000+1500],
-        ['Last Saturday', 8000+1500],
-        ['Today', 9000+1500],
+        ['Today', 9000+2500],
+        ['Tomorrow', 11000+2500],
+        ['Next Monday', 12000+2500],
+        ['Tonight', 9000+2500],
+        ['Last Week', 10000+2500],
+        ['This Sunday', 8000+2500],
+        ['Next Thursday', 12000+2500],
+        ['This Weekend', 13000+2500],
+        ['Last Saturday', 8000+2500],
+        ['Today', 9000+2500],
         ]" :key="index">
         <div class="sliding-banner" :style="{'--sliding-duration': d[1]+'ms'}">
           <template x-data x-for="el in 24">
@@ -173,7 +179,7 @@
       </svg>
     </div>
     -->
-    <button class="button" style="box-shadow: 0 0 50px 1px #fff;"
+    <button class="button"
       @click="start=true; currentQuestionIndex++">
       TAKE THE QUIZ
     </button>
@@ -193,15 +199,73 @@
   <section class="game-screen"
     x-show="currentQuestionIndex !== questions.length && start == true"
     x-data="{ currentQuestion: () => { return questions[currentQuestionIndex] || $store.createQuestions(0, '', '', '', '', ''); } }">
-    <div style="height:100%"></div>
-    <canvas id="canvas"></canvas>
 
-      <!-- <img class="foot" src="./assets/images/foot.png"> -->
-      <!-- <svg class="fluid" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 881.51 1000">
-        <path class="cls-1" d="M273.76,419.26c-75.6,36.17-98.72,65.97-145.93,112.95-51.89,51.63-86.53,128.02-97.59,200.38-11.05,72.36,7.69,150.43,56.75,204.75,49.06,54.32,126.96,70.44,199.31,59.37,31.41-4.81,93.51-26.62,135.21-66.02,43.13-40.75,61.01-95.42,23.47-134.12-38.5-39.7-64.37-.49-108.73,7.65-61.1,11.21-101.63-21.86-132.66-75.68-31.03-53.82-24.33-126.86,15.99-174.12,59.46-69.72,166.25-67.34,222.89-139.37,45.61-58,25.37-124.58,40.99-178.32,20.11-69.2,75.21-127.24,143.27-150.92,41.11-14.31,90.03-15.36,125.02,10.53,36.87,27.29,49.29,77.26,48.9,123.12-.98,114.25-70.61,225.24-173.04,275.85-48.4,23.92-102.88,35.16-148.48,64.07-45.6,28.91-81.57,85.17-62.77,135.78,18.89,50.86,85.74,69.89,137.34,53.15,51.6-16.74,90.34-59.09,123.92-101.69,62.35-79.09,132.96-161.01,159.18-256.07,26.22-95.06,23.77-206.53-12.29-271.04C788.45,55,720.09,9.64,646.64,1.49c-49.29-5.47-99,4.88-146.54,19.02-45.09,13.41-90.27,30.95-125.29,62.36-37.75,33.86-61.65,85.31-60.97,171.78.68,86.47,20,135.86-40.08,164.61Z"/>
-        <path class="cls-1" d="M652.76,800.32c-32.41,21.76-4.04,38.95-32.58,56.29-28.54,17.34-18.72,55.5-8.07,80.5,10.65,25,46.42,36.57,74.69,38.89,25.89,2.12,51.38-2.94,75.6-12.33,11.44-4.43,22.99-8.95,33.09-15.91s18.79-16.68,22.14-28.48c4.99-17.57-2.55-36.4-13.06-51.34-10.51-14.94-24.04-27.69-33.46-43.33-3.88-6.44-7.15-13.47-12.81-18.42-7.88-6.89-15.29-15.59-46.53-19.3-31.24-3.7-46.79,5.22-59.02,13.43Z"/>
-      </svg>
-      -->
+    <div class="sliding-backdrop" x-show="" style="filter: blur(17px); opacity: .87;">
+      <template x-data x-for="(d, index) in [
+        ['Today', 9000+2500],
+        ['Tomorrow', 11000+2500],
+        ['Next Monday', 12000+2500],
+        ['Tonight', 9000+2500],
+        ['Last Week', 10000+2500],
+        ['This Sunday', 8000+2500],
+        ['Next Thursday', 12000+2500],
+        ['This Weekend', 13000+2500],
+        ['Last Saturday', 8000+2500],
+        ['Today', 9000+2500],
+        ]" :key="index">
+        <div class="sliding-banner" :style="{'--sliding-duration': d[1]+'ms'}">
+          <template x-data x-for="el in 24">
+            <div class="sliding-unit">
+              <div class="sliding-item">What's Your Flow</div>
+              <div class="sliding-item" x-text="d[0]+'?'"></div>
+            </div>
+          </template>
+        </div>
+      </template>
+      <div class="charms-container" style="left: 50%; transform: translateX(-50%);">
+        <img id="c-squiggly" src="./assets/images/charms/A1.png" 
+            :style="{
+              'top': '0%',
+              'left': '5%',
+              'animation-delay': randomizer(0, charmDelayMax)+'ms',
+              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+            }">
+        <img id="c-puddle" src="./assets/images/charms/A5.png"
+            :style="{
+              'top': '10%',
+              'right': '-13%',
+              'animation-delay': randomizer(0, charmDelayMax)+'ms',
+              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+            }">
+        <img id="c-star" src="./assets/images/charms/A4.png"
+        :style="{
+          'top': '-9%',
+          'right': '0%',
+          'animation-delay': randomizer(0, charmDelayMax)+'ms',
+          'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+        }">
+        <img id="c-bean" src="./assets/images/charms/A2.png"
+            :style="{
+              'top': '29%',
+              'left': '-15%',
+              'animation-delay': randomizer(0, charmDelayMax)+'ms',
+              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+            }">
+        <img id="c-spike" src="./assets/images/charms/A3.png"
+            :style="{
+              'bottom': '27%',
+              'left': '12%',
+              'animation-delay': randomizer(0, charmDelayMax)+'ms',
+              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+            }">
+        <img id="c-ask" src="./assets/images/charms/A6.png"
+            :style="{
+              'bottom': '36%',
+              'right': '2%',
+              'animation-delay': randomizer(0, charmDelayMax)+'ms',
+              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+            }">
+      </div>
     </div>
 
     <template x-for="(diches, index) in dichesOrder" :key="index">
@@ -209,7 +273,7 @@
           x-transition:enter="flower-box-in"
           x-transition:enter-start="flower-box-in-start"
           x-transition:enter-end="flower-box-in-end"
-          x-show="currentQuestionIndex===index">
+          x-show="false">
         <div class="flower-box">
           <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
           <img :src=`./assets/images/Diches/${dichesOrder[index]}.png`>
@@ -222,10 +286,11 @@
         </div>
       </div>
     </template>
+
+    <div style="height:100%"></div>
     
-    <article class="question-box">
-      <h2 class="index" x-text="currentQuestionIndex+1"
-          ></h2>
+    <article class="question-box" style="margin-top: 3rem">
+      <h2 class="index" x-text="currentQuestionIndex+1"></h2>
       <h4 class="title"
           x-text="currentQuestion().title">Title</h4>
       <div class="progression-bar">

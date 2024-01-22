@@ -17,7 +17,7 @@
     
     setTimeout(() => {
       window.location.href = `./assets/images/results/2x/${personality}.png`;
-    }, 2700);
+    }, 2000);
     return personality;
   };
   const mapRange = (number, inMin, inMax, outMin, outMax) => (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
