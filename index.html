@@ -200,7 +200,7 @@
     x-show="currentQuestionIndex !== questions.length && start == true"
     x-data="{ currentQuestion: () => { return questions[currentQuestionIndex] || $store.createQuestions(0, '', '', '', '', ''); } }">
 
-    <div class="sliding-backdrop" x-show="" style="filter: blur(17px); opacity: .87;">
+    <div class="sliding-backdrop" x-show="" style="opacity: .67;">
       <template x-data x-for="(d, index) in [
         ['Today', 9000+2500],
         ['Tomorrow', 11000+2500],

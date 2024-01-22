@@ -448,11 +448,11 @@ body.q13 .logo {
   width: 90%;
   height: 90%;
   border-radius: 100%;
-  background-color: #fff;
   z-index: -1;
   transform: rotate(45deg) scale(.9);
   margin: auto 0;
   box-shadow: 0 0 0 1px var(--primary);
+  -webkit-backdrop-filter: blur(25px);
 }
 .actors img {
   position: absolute;
@@ -551,6 +551,8 @@ h2.index {
   flex-shrink: 0;
   padding-top: 12px;
   letter-spacing: -2px;
+
+  -webkit-backdrop-filter: blur(100px);
 }
 h2.index.next {
   position: absolute;
@@ -571,12 +573,14 @@ h4.title {
   margin: 0;
   width: 100%;
   transition: 0.7s;
+  text-transform: uppercase;
 }
 .progression-bar {
   position: absolute;
   width: 100%;
   bottom: 0;
   height: 4px;
+  -webkit-backdrop-filter: blur(100px);
 }
 .progression-bar::after,
 .progression-bar > .fill {
@@ -707,6 +711,7 @@ li {
   opacity: 0.68;
   transform: scale(0.96);
   letter-spacing: 0.5px;
+  -webkit-backdrop-filter: blur(100px);
 } 
 li:hover:not(.selected),
 li:focus:not(.selected) {
