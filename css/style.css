@@ -394,6 +394,56 @@ body.q13 .logo {
   to {transform: translateX(-100%);}
 }
 
+.promo-pics {
+  position: fixed;
+  width: 100vw;
+  top: 5.3rem;
+  left: 0;
+  opacity: 1;
+  z-index: -8;
+
+  animation: none !important;
+}
+
+.slideshow-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: calc(var(--height) - 1px);
+  bottom: 0;
+  --sliding-duration: 15000ms;
+  flex-shrink: 0;
+  z-index: -1;
+
+  --height: 220px;
+}
+
+.slideshow-unit {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  height: var(--height);
+
+  animation: slide-left 9000ms linear infinite;
+  animation-duration: var(--sliding-duration);
+}
+.slideshow-item {
+  position: relative;
+  height: 100%;
+  width: auto;
+  border-radius: 2rem;
+  box-shadow: 0 0 0 1px var(--primary);
+
+  margin: 0 .25rem;
+  --color: var(--primary);
+  --text: #fff;
+}
+@keyframes slide-left {
+  from {transform: translateX(0%);}
+  to {transform: translateX(-100%);}
+}
+
 .sliding-item.emphasis {
   color: var(--text);
 }
@@ -432,6 +482,48 @@ body.q13 .logo {
   to {transform: translateY(4vh);}
 }
 
+.diches-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  pointer-events: none;
+  user-select: none;
+  top: -2vh;
+  left: 50%; transform: translateX(-50%);
+}
+.diches-container > div {
+  position: absolute;
+  width: 23.5vh;
+  height: auto;
+  transition: 3s;
+
+  animation: bobbing 2s alternate ease-in-out infinite;
+}
+.diches-container > div > img {
+  width: 100%;
+}
+
+.pop-in {
+  transition: 300ms;
+  transition-delay: 150ms;
+  transition-timing-function: cubic-bezier(.45,.02,.47,1.55);
+}
+.pop-out {
+  transition: 200ms;
+  transition-timing-function: cubic-bezier(.53,-0.68,.41,1);
+}
+.pop-in-start,
+.pop-out-end {
+  transform: scale(0) rotate(45deg);
+  opacity: 0.5;
+}
+.pop-in-end,
+.pop-out-start {
+  transform: scale(.68) rotate(0);
+  opacity: 1;
+}
+
 .actors {
   position: fixed;
   display: flex;
@@ -441,7 +533,7 @@ body.q13 .logo {
   height: 100dvh;
   top: -10vh;
 }
-.charms-container::after {
+.start-screen .charms-container::after {
   position: absolute;
   content: '';
   top: -6vh;
@@ -454,6 +546,7 @@ body.q13 .logo {
   box-shadow: 0 0 0 1px var(--primary);
   -webkit-backdrop-filter: blur(25px);
 }
+
 .actors img {
   position: absolute;
   height: 100%;
@@ -487,7 +580,8 @@ body.q13 .logo {
 }
 
 @media only screen and (min-width: 640px) {
-  .charms-container {
+  .charms-container,
+  .diches-container {
     width: 540px;
   }
 }

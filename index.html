@@ -60,6 +60,8 @@
         charmDelayMax: 700,
         charmBobLength: 2300,
         charmBobLengthDifference: 800,
+        backdropScrim: 'linear-gradient(#ECFFEC, #fff)',
+        backdropScrimV2: 'linear-gradient(rgba(236, 255, 236, .24), transparent)',
       }"
       :class="'q' + (currentQuestionIndex+1)"
       x-init="setInterval(() => {
@@ -80,7 +82,8 @@
     x-show="start == false"
     x-transition:leave="screen-out-transition"
     x-transition:leave-start="screen-out-start"
-    x-transition:leave-end="screen-out-end">
+    x-transition:leave-end="screen-out-end"
+    :style="`background: ${backdropScrim}`">
     
     <div class="sliding-backdrop" x-show="">
       <template x-data x-for="(d, index) in [
@@ -199,74 +202,500 @@
   <section class="game-screen"
     x-show="currentQuestionIndex !== questions.length && start == true"
     x-data="{ currentQuestion: () => { return questions[currentQuestionIndex] || $store.createQuestions(0, '', '', '', '', ''); } }">
-
-    <div class="sliding-backdrop" x-show="" style="opacity: .67;">
-      <template x-data x-for="(d, index) in [
-        ['Today', 9000+2500],
-        ['Tomorrow', 11000+2500],
-        ['Next Monday', 12000+2500],
-        ['Tonight', 9000+2500],
-        ['Last Week', 10000+2500],
-        ['This Sunday', 8000+2500],
-        ['Next Thursday', 12000+2500],
-        ['This Weekend', 13000+2500],
-        ['Last Saturday', 8000+2500],
-        ['Today', 9000+2500],
-        ]" :key="index">
-        <div class="sliding-banner" :style="{'--sliding-duration': d[1]+'ms'}">
-          <template x-data x-for="el in 24">
-            <div class="sliding-unit">
-              <div class="sliding-item">What's Your Flow</div>
-              <div class="sliding-item" x-text="d[0]+'?'"></div>
-            </div>
-          </template>
-        </div>
-      </template>
-      <div class="charms-container" style="left: 50%; transform: translateX(-50%);">
-        <img id="c-squiggly" src="./assets/images/charms/A1.png" 
-            :style="{
-              'top': '0%',
-              'left': '5%',
-              'animation-delay': randomizer(0, charmDelayMax)+'ms',
-              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
-            }">
-        <img id="c-puddle" src="./assets/images/charms/A5.png"
-            :style="{
-              'top': '10%',
-              'right': '-13%',
-              'animation-delay': randomizer(0, charmDelayMax)+'ms',
-              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
-            }">
-        <img id="c-star" src="./assets/images/charms/A4.png"
-        :style="{
-          'top': '-9%',
-          'right': '0%',
-          'animation-delay': randomizer(0, charmDelayMax)+'ms',
-          'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
-        }">
-        <img id="c-bean" src="./assets/images/charms/A2.png"
-            :style="{
-              'top': '29%',
-              'left': '-15%',
-              'animation-delay': randomizer(0, charmDelayMax)+'ms',
-              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
-            }">
-        <img id="c-spike" src="./assets/images/charms/A3.png"
-            :style="{
-              'bottom': '27%',
-              'left': '12%',
-              'animation-delay': randomizer(0, charmDelayMax)+'ms',
-              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
-            }">
-        <img id="c-ask" src="./assets/images/charms/A6.png"
-            :style="{
-              'bottom': '36%',
-              'right': '2%',
-              'animation-delay': randomizer(0, charmDelayMax)+'ms',
-              'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
-            }">
+  
+    <div class="promo-pics">
+      <div class="slideshow-banner">
+        <template x-data x-for="el in 50">
+          <div class="slideshow-unit">
+            <img class="slideshow-item" src="./assets/images/posters/Minh_M Medium.jpeg">
+            <img class="slideshow-item" src="./assets/images/posters/Ngoc_M Medium.jpeg">
+            <img class="slideshow-item" src="./assets/images/posters/Van_M Medium.jpeg">
+            <img class="slideshow-item" src="./assets/images/posters/Vinh_M Medium.jpeg">
+            <img class="slideshow-item" src="./assets/images/posters/Khanh_M Medium.jpeg">
+          </div>
+        </template>
       </div>
     </div>
+    
+    <div class="diches-container">
+      <div
+      :style="{
+        'top': '0%',
+        'left': '5%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/2N.png"
+        x-show="currentQuestionIndex===0"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '32%',
+        'right': '1%',
+        'width': '20vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4J.png"
+        x-show="currentQuestionIndex===0"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '24%',
+        'left': '45%',
+        'width': '18vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1I.png"
+        x-show="currentQuestionIndex===0"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '4%',
+        'left': '15%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/3F.png"
+        x-show="currentQuestionIndex===1"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '30%',
+        'right': '30%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/2S.png"
+        x-show="currentQuestionIndex===1"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '25%',
+        'left': '20%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1E.png"
+        x-show="currentQuestionIndex===2"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '5%',
+        'right': '10%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4P.png"
+        x-show="currentQuestionIndex===2"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '0%',
+        'right': '5%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1I.png"
+        x-show="currentQuestionIndex===3"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '32%',
+        'left': '1%',
+        'width': '20vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/2S.png"
+        x-show="currentQuestionIndex===3"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '12%',
+        'right': '45%',
+        'width': '18vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/3T.png"
+        x-show="currentQuestionIndex===3"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '4%',
+        'right': '15%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/3T.png"
+        x-show="currentQuestionIndex===4"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '30%',
+        'left': '12%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4P.png"
+        x-show="currentQuestionIndex===4"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '30%',
+        'right': '10%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4P.png"
+        x-show="currentQuestionIndex===5"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '10%',
+        'right': '45%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1E.png"
+        x-show="currentQuestionIndex===5"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '0%',
+        'left': '5%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/2N.png"
+        x-show="currentQuestionIndex===6"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '32%',
+        'right': '1%',
+        'width': '20vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4J.png"
+        x-show="currentQuestionIndex===6"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '24%',
+        'left': '45%',
+        'width': '18vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1I.png"
+        x-show="currentQuestionIndex===6"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '4%',
+        'left': '15%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/3F.png"
+        x-show="currentQuestionIndex===7"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '30%',
+        'right': '30%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/2S.png"
+        x-show="currentQuestionIndex===7"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '25%',
+        'left': '20%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1E.png"
+        x-show="currentQuestionIndex===8"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '5%',
+        'right': '10%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4P.png"
+        x-show="currentQuestionIndex===8"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '0%',
+        'right': '5%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1I.png"
+        x-show="currentQuestionIndex===9"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '32%',
+        'left': '1%',
+        'width': '20vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/2S.png"
+        x-show="currentQuestionIndex===9"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '12%',
+        'right': '45%',
+        'width': '18vh',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/3T.png"
+        x-show="currentQuestionIndex===9"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '4%',
+        'right': '15%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/3T.png"
+        x-show="currentQuestionIndex===10"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '30%',
+        'left': '12%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4P.png"
+        x-show="currentQuestionIndex===10"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+
+      <div
+      :style="{
+        'top': '30%',
+        'right': '10%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/4P.png"
+        x-show="currentQuestionIndex===11"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+      <div
+      :style="{
+        'top': '10%',
+        'right': '45%',
+        'animation-delay': randomizer(0, charmDelayMax)+'ms',
+        'animation-duration': randomizer(charmBobLength, charmBobLength+charmBobLengthDifference)+'ms',
+      }">
+        <img src="./assets/images/diches/1E.png"
+        x-show="currentQuestionIndex===11"
+        x-transition:enter="pop-in"
+        x-transition:enter-start="pop-in-start"
+        x-transition:enter-end="pop-in-end"
+        x-transition:leave="pop-out"
+        x-transition:leave-start="pop-out-start"
+        x-transition:leave-end="pop-out-end">
+      </div>
+    </div>
+
+    <div :style="{
+      position: 'fixed',
+      width: '100%',
+      height: '100%',
+      left: '0',
+      top: '0',
+      background: (currentQuestionIndex < 6) ? backdropScrim : backdropScrimV2,
+      zIndex: -10,
+    }"></div>
 
     <template x-for="(diches, index) in dichesOrder" :key="index">
       <div class="flower-box-container"
